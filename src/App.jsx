@@ -1,14 +1,12 @@
 
 import './App.css'
+import Header from './Components/Header/Header'
 
 function App() {
 
   return (
     <div>
-      <h1>
-      React Flipkart
-    </h1>
-    <button className='btn btn-primary'>click</button>
+      <Header />
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import './Header.css'
 
 
@@ -6,7 +7,7 @@ function Header () {
         <>
             <div className="nav-wrapper">
                 <div className="left-content">
-                    <h4><a href="index.html" className="text-decoration-none">Shop Cart</a> </h4>
+                    <h4><Link to={"/"} className="text-decoration-none">Shop Cart</Link> </h4>
 
                     <div className="input-wrapper">
                         <input type="text" className="form-control" placeholder="Search here..." />

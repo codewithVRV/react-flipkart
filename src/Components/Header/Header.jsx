@@ -22,8 +22,8 @@ function Header () {
                         Account
                         </a>
                         <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="#">Login</a></li>
-                        <li><a className="dropdown-item" href="#">Logout</a></li>
+                        <li><Link to={"/login"} className="dropdown-item" href="#">Login</Link></li>
+                        <li><Link to={"/logout"} className="dropdown-item" href="#">Logout</Link></li>
                         </ul>
                     </div>
                     <div className="cart-item">

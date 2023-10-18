@@ -1,5 +1,10 @@
 import CategoryItem from '../../Components/CategoryItem/CategoryItem';
 import './Home.css'
+import all_img from '../../Assets/all-prod.jpg'
+import electronic from '../../Assets/electronics.jpg'
+import jewellery from '../../Assets/jewellery.jpg'
+import mens from '../../Assets/men.avif'
+import women from '../../Assets/women.avif'
 
 function Home () {
     return (
@@ -15,31 +20,31 @@ function Home () {
             <div className="row d-flex">
                 <div className="col parent-img-category-wrapper">
                     <div className="img-category-wrapper">
-                        <img src="./img/all-prod.jpg" alt="" className="img-fluid" />
+                        <img src={all_img} alt="" className="img-fluid" />
                     </div>
                     <p>All Products</p>
                 </div>
                 <div className="col parent-img-category-wrapper">
                     <div className="img-category-wrapper">
-                        <img src="./img/electronics.jpg" alt="" className="img-fluid"/>
+                        <img src={electronic} alt="" className="img-fluid"/>
                     </div>
                     <p>Electronics</p>
                 </div>
                 <div className="col parent-img-category-wrapper">
                     <div className="img-category-wrapper">
-                        <img src="./img/jewellery.jpg" alt="" className="img-fluid"/>
+                        <img src={jewellery} alt="" className="img-fluid"/>
                     </div>
                     <p>Jewellery</p>
                 </div>
                 <div className="col parent-img-category-wrapper">
                     <div className="img-category-wrapper">
-                        <img src="./img/men.avif" alt="" className="img-fluid"/>
+                        <img src={mens} alt="" className="img-fluid"/>
                     </div>
                     <p>Mens </p>
                 </div>
                 <div className="col parent-img-category-wrapper">
                     <div className="img-category-wrapper">
-                        <img src="./img/women.avif" alt="" className="img-fluid"/>
+                        <img src={women} alt="" className="img-fluid"/>
                     </div>
                     <p>Womens</p>
                 </div>

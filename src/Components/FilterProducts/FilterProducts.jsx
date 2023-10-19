@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import useCategory from "../../Hooks/useCategory"
 
 function FilterProducts () {
@@ -6,6 +7,11 @@ function FilterProducts () {
     const maxPriceOption = [0, 10, 20, 30, 50, 100, 500]
 
     const [allCategories] = useCategory()
+    const navigator = useNavigate()
+
+    function handleCategoryNavigate(category) {
+        navigator(`/products?category=${category}`)
+    }
 
     return (
         <>
@@ -20,8 +26,8 @@ function FilterProducts () {
             <div className="sidebar-title fw-bold">Categories</div>
             <div id="categoryList">
 
-                <a href="productList.html" className="d-flex text-decoration-none">All Products</a>
-                {allCategories && allCategories.map((category) => <a key={category} className="d-flex text-decoration-none">{category}</a>)}
+                {/* <a href="productList.html" className="d-flex text-decoration-none" onClick={() => handleCategoryNavigate("")}>All Products</a> */}
+                {allCategories && allCategories.map((category) => <a onClick={() => handleCategoryNavigate(category)} key={category} className="d-flex text-decoration-none">{category}</a>)}
 
             </div>
 

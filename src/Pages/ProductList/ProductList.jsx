@@ -15,15 +15,14 @@ function ProductList () {
     async function downloadAllProducts (category) {
         const downloadUrl = category ? getAllProductsByCategory(category) : getAllProducts()
         const response = await axios.get(downloadUrl)
-        console.log("all products", response.data)
+        // console.log("all products", response.data)
         setAllProducts(response.data)
     }
 
 
     useEffect(() => {
         downloadAllProducts(query.get('category'))
-        console.log(query.get('category'))
-    }, [])
+    }, [query.get('category')])
     return (
         <>
             <div className="container">

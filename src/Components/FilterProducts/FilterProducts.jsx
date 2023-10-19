@@ -1,7 +1,12 @@
+import useCategory from "../../Hooks/useCategory"
+
 function FilterProducts () {
 
     const minPriceOption = [0, 10, 20, 30, 50, 100]
     const maxPriceOption = [0, 10, 20, 30, 50, 100, 500]
+
+    const [allCategories] = useCategory()
+
     return (
         <>
             <div className="product-list-sidebar d-flex flex-column"> 
@@ -16,11 +21,8 @@ function FilterProducts () {
             <div id="categoryList">
 
                 <a href="productList.html" className="d-flex text-decoration-none">All Products</a>
-                <a href="productList.html" className="d-flex text-decoration-none">Electronic</a>
-                <a href="productList.html" className="d-flex text-decoration-none">Jewellery</a>
-                <a href="productList.html" className="d-flex text-decoration-none">Men</a>
-                <a href="productList.html" className="d-flex text-decoration-none">Women</a>
-            
+                {allCategories && allCategories.map((category) => <a key={category} className="d-flex text-decoration-none">{category}</a>)}
+
             </div>
 
             <div className="sidebar-title">Filter by Price</div>

@@ -4,21 +4,25 @@ import ProductBox from '../../Components/ProductBox/ProductBox';
 import FilterProducts from '../../Components/FilterProducts/FilterProducts';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { getAllProducts } from '../../Apis/fakeStoreProdApis';
+import { getAllProducts, getAllProductsByCategory } from '../../Apis/fakeStoreProdApis';
+import { useSearchParams } from 'react-router-dom';
 
 function ProductList () {
 
     const [allProducts, setAllProducts] = useState([])
+    const [query] = useSearchParams()
 
-    async function downloadAllProducts () {
-        const response = await axios.get(getAllProducts())
+    async function downloadAllProducts (category) {
+        const downloadUrl = category ? getAllProductsByCategory(category) : getAllProducts()
+        const response = await axios.get(downloadUrl)
         console.log("all products", response.data)
         setAllProducts(response.data)
     }
 
 
     useEffect(() => {
-        downloadAllProducts()
+        downloadAllProducts(query.get('category'))
+        console.log(query.get('category'))
     }, [])
     return (
         <>

@@ -38,15 +38,15 @@ function Home () {
             </div>
             <div className="container">
             <div className="row d-flex">
-                <div className="col parent-img-category-wrapper">
-                    <Link to={'/products'}>
+                {/* <div className="col parent-img-category-wrapper">
                         <div className="img-category-wrapper">
                             <img src={all_img} alt="" className="img-fluid" />
                         </div>
-                    </Link>
                     <p>All Products</p>
-                </div>
-                <div className="col parent-img-category-wrapper">
+                </div> */}
+                <CategoryItem itemName={"All Products"}/>
+                {allCategories && allCategories.map((category) => <CategoryItem  key={category} itemName={category} filter={category}/>)}
+                {/* <div className="col parent-img-category-wrapper">
                     <div className="img-category-wrapper">
                         <img src={electronic} alt="" className="img-fluid"/>
                     </div>
@@ -69,7 +69,7 @@ function Home () {
                         <img src={women} alt="" className="img-fluid"/>
                     </div>
                     <p>Womens</p>
-                </div>
+                </div> */}
             </div>
         </div>
         </>

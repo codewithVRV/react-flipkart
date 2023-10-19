@@ -8,6 +8,7 @@ import women from '../../Assets/women.avif'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { getAllCategories } from '../../Apis/fakeStoreProdApis';
+import { Link } from 'react-router-dom';
 
 function Home () {
 
@@ -31,16 +32,18 @@ function Home () {
                 <div className="row d-flex">
                     <h1 className="home-title text-center mb-5">Welcome to Shop Cart</h1>
                     
-                    {allCategories && allCategories.map((category) => <CategoryItem itemName={category} key={category} />)}
+                    {/* {allCategories && allCategories.map((category) => <CategoryItem itemName={category} key={category} />)} */}
                     
                 </div>
             </div>
             <div className="container">
             <div className="row d-flex">
                 <div className="col parent-img-category-wrapper">
-                    <div className="img-category-wrapper">
-                        <img src={all_img} alt="" className="img-fluid" />
-                    </div>
+                    <Link to={'/products'}>
+                        <div className="img-category-wrapper">
+                            <img src={all_img} alt="" className="img-fluid" />
+                        </div>
+                    </Link>
                     <p>All Products</p>
                 </div>
                 <div className="col parent-img-category-wrapper">

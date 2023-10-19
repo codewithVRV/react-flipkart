@@ -5,14 +5,33 @@ import electronic from '../../Assets/electronics.jpg'
 import jewellery from '../../Assets/jewellery.jpg'
 import mens from '../../Assets/men.avif'
 import women from '../../Assets/women.avif'
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { getAllCategories } from '../../Apis/fakeStoreProdApis';
 
 function Home () {
+
+    const [allCategories, setAllCategories] = useState([])
+
+
+    async function downloadAllCategories () {
+        const response = await axios.get(getAllCategories())
+        // console.log("response all categories", response)
+        setAllCategories(response.data)
+    }
+    console.log(allCategories)
+
+
+    useEffect(() => {
+        downloadAllCategories()
+    }, [])
     return (
         <>
             <div className="container">
-                <div className="row">
+                <div className="row d-flex">
                     <h1 className="home-title text-center mb-5">Welcome to Shop Cart</h1>
-                    <CategoryItem itemName={"All Product"}/>
+                    
+                    {allCategories && allCategories.map((category) => <CategoryItem itemName={category} key={category} />)}
                     
                 </div>
             </div>

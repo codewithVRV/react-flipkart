@@ -1,7 +1,26 @@
+import { useParams } from 'react-router-dom';
 import './ProductsDetail.css'
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { getProduct } from '../../Apis/fakeStoreProdApis';
 
 
 function ProductsDetail () {
+
+    const [singleDetail, setSingleDetail] = useState([])
+    const {id} = useParams()
+    console.log("id is", id)
+    async function getDetailsOfSingleProduct () {
+        const response = await axios.get(getProduct(id))
+        console.log(response.data)
+        setSingleDetail(response.data)
+    }
+    console.log("singleDetails", singleDetail)
+
+
+    useEffect(() => {
+        getDetailsOfSingleProduct()
+    }, [])
     return (
         <>
             <div className="container">
@@ -9,17 +28,17 @@ function ProductsDetail () {
                 <div className="product-details-wrapper d-flex flex-row justify-content-between align-items-start">
 
                     <div className="product-img d-flex" id="product-img-header">
-                        <img src="https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg" alt="product-image" id="product-img" />
+                        <img src={singleDetail.image} alt="product-image" id="product-img" />
                     </div>
 
                     <div className="product-details-box d-flex flex-column">
                         <div id="productDetails">
 
-                            <div className="product-name" id="product-name">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</div>
-                            <div className="product-price fw-bold" id="product-price">$ 109.95</div>
+                            <div className="product-name" id="product-name">{singleDetail.title}</div>
+                            <div className="product-price fw-bold" id="product-price">{singleDetail.price}</div>
                             <div className="product-description">
-                                <div className="product-description-title fw-bold" id="product-info">Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops</div>
-                                <div className="product-description-data" id="product-desc">Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday</div>
+                                <div className="product-description-title fw-bold" id="product-info">Descript of Product</div>
+                                <div className="product-description-data" id="product-desc">{singleDetail.description}</div>
                                 
                             </div>
                         </div>

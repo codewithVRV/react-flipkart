@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom"
 
-function ProductBox ({productDemoImage, name, price}) {
+function ProductBox ({productDemoImage, name, price, id}) {
     return (
         <>
-            <Link to={'/products/2'} className="product-item text-decoration-none d-inline-block">
+            <Link to={`/products/${id}`} className="product-item text-decoration-none d-inline-block">
                         <div className="product-img">
                             <img src={productDemoImage} alt="" />
                         </div>

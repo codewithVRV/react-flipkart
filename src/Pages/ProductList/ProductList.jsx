@@ -1,5 +1,4 @@
 import './ProductList.css'
-import productDemoImage from '../../Assets/product.jpg'
 import ProductBox from '../../Components/ProductBox/ProductBox';
 import FilterProducts from '../../Components/FilterProducts/FilterProducts';
 import { useEffect, useState } from 'react';
@@ -41,8 +40,8 @@ function ProductList () {
 
                    {/* productBox here */}
                     
-                    <ProductBox productDemoImage={productDemoImage} name={"Dummy"} price={"100$"}/>
-                    {allProducts && allProducts.map((product) =>  <ProductBox key={product.id} productDemoImage={product.image} name={product.title.substr(0, 20) + ".."} price={product.price}/> )}
+                    {/* <ProductBox productDemoImage={productDemoImage} name={"Dummy"} price={"100$"}/> */}
+                    {allProducts && allProducts.map((product) =>  <ProductBox key={product.id} id={product.id} productDemoImage={product.image} name={product.title.substr(0, 20) + ".."} price={product.price}/> )}
 
                      {/* <!-- Everything below just copy paste --> */}
                     

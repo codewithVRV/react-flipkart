@@ -1,8 +1,18 @@
 import { Link } from 'react-router-dom';
 import './Header.css'
+import { useEffect } from 'react';
+import { useCookies } from 'react-cookie';
+import toast from 'react-hot-toast';
 
 
 function Header () {
+
+    // token is an object, setToken and removeToken are functions
+    const [token, setToken, removeToken] = useCookies(['jwt-token']);
+
+    useEffect(() => {
+
+    }, [token])
     return (
         <>
             <div className="nav-wrapper">
@@ -22,8 +32,14 @@ function Header () {
                         Account
                         </a>
                         <ul className="dropdown-menu">
-                        <li><Link to={"/login"} className="dropdown-item" href="#">Login</Link></li>
-                        <li><Link to={"/logout"} className="dropdown-item" href="#">Logout</Link></li>
+                        {token['jwt-token'] ?  <li><Link onClick={() => 
+                                {
+                                    removeToken('jwt-token')
+                                    toast.success("Logout Successfully")
+                                }
+                            } className="dropdown-item" href="#">Logout</Link></li> : <li><Link to={"/login"} className="dropdown-item" href="#">Login</Link></li>}
+                        
+
                         </ul>
                     </div>
                     <div className="cart-item">

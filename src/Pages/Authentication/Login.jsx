@@ -5,11 +5,12 @@ import axios from 'axios';
 import { signin } from '../../Apis/fakeStoreProdApis';
 import toast from 'react-hot-toast';
 import { useRef } from 'react';
-
+import { useCookies } from 'react-cookie';
 function Login () {
 
     const authRef = useRef()
     const navigator = useNavigate()
+    const [token, setToken] = useCookies(['jwt-token'])
 
     async function onAuthFormSubmit(formDetails) {
         try{
@@ -18,8 +19,9 @@ function Login () {
                 password: formDetails.password,
                 username: formDetails.username
             })
+
+            setToken('jwt-token',response.data.token)
             navigator('/')
-            console.log(response)
             toast.success("Login Successfully")
         }
 

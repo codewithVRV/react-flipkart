@@ -15,7 +15,11 @@ function Login () {
             <div className="login-wrapper" id="loginForm">
                 <h4 className="text-center">Login</h4>
                 {/* Auth component */}
-                <Auth />
+                <Auth 
+                
+                
+                
+                />
                 <div className="signup-btn text-center fw-bold">
                     <Link to={'/signup'}>Dont have an Account? Sign Up Here</Link>
                 </div>

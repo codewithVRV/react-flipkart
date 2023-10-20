@@ -9,13 +9,10 @@ function ProductsDetail () {
 
     const [singleDetail, setSingleDetail] = useState([])
     const {id} = useParams()
-    console.log("id is", id)
     async function getDetailsOfSingleProduct () {
         const response = await axios.get(getProduct(id))
-        console.log(response.data)
         setSingleDetail(response.data)
     }
-    console.log("singleDetails", singleDetail)
 
 
     useEffect(() => {

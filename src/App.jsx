@@ -2,6 +2,7 @@
 import './App.css'
 import Header from './Components/Header/Header'
 import MainRoutes from './Routes/MainRoutes'
+import { Toaster } from 'react-hot-toast';
 
 function App() {
 
@@ -9,6 +10,7 @@ function App() {
     <div>
       <Header />
       <MainRoutes />
+      <Toaster />
     </div>
   )
 }

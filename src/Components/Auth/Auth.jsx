@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function Auth ({onSubmit, resetForm}) {
+function Auth ({onSubmit}) {
 
     const [formDetails, setFormDetails] = useState({username: '', email: '', password: '', isLoading: false})
 
@@ -18,13 +18,17 @@ function Auth ({onSubmit, resetForm}) {
 
     function onFormSubmit () {
         setFormDetails({...formDetails, isLoading: true})
-        onSubmit(formDetails)
+        onSubmit(formDetails, resetForm)
+    }
+
+    function resetForm () {
+        setFormDetails({username: '', email: '', password: ''})
     }
 
 
     useEffect(() => {
         setFormDetails({username: '', email: '', password: '', isLoading: false})
-    }, [resetForm])
+    }, [])
 
     return (
         <>

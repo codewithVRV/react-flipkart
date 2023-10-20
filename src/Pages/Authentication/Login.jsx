@@ -1,8 +1,35 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Auth from '../../Components/Auth/Auth';
 import './Authentication.css'
+import axios from 'axios';
+import { signin } from '../../Apis/fakeStoreProdApis';
+import toast from 'react-hot-toast';
+import { useRef } from 'react';
 
 function Login () {
+
+    const authRef = useRef()
+    const navigator = useNavigate()
+
+    async function onAuthFormSubmit(formDetails) {
+        try{
+            const response = await axios.post(signin(), {
+                email: formDetails.email,
+                password: formDetails.password,
+                username: formDetails.username
+            })
+            navigator('/')
+            console.log(response)
+            toast.success("Login Successfully")
+        }
+
+        catch (error) {
+            console.log("error from login", error)
+            authRef.current.resetFormData()
+            toast.error("Something went wrong..")
+        }
+    }
+
     return (
         <>
             <div className="container">
@@ -17,7 +44,8 @@ function Login () {
                 {/* Auth component */}
                 <Auth 
                 
-                
+                onSubmit={onAuthFormSubmit}
+                ref={authRef}
                 
                 />
                 <div className="signup-btn text-center fw-bold">

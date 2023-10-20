@@ -6,6 +6,7 @@ import { signin } from '../../Apis/fakeStoreProdApis';
 import toast from 'react-hot-toast';
 import { useRef } from 'react';
 import { useCookies } from 'react-cookie';
+import jwt_decode from "jwt-decode";
 function Login () {
 
     const authRef = useRef()
@@ -19,7 +20,8 @@ function Login () {
                 password: formDetails.password,
                 username: formDetails.username
             })
-
+            const tokenDetails = jwt_decode(response.data.token)
+            console.log(tokenDetails)
             setToken('jwt-token',response.data.token, {httpOnly: true})
             navigator('/')
             toast.success("Login Successfully")

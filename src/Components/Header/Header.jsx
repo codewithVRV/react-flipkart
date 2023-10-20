@@ -10,9 +10,9 @@ function Header () {
     // token is an object, setToken and removeToken are functions
     const [token, setToken, removeToken] = useCookies(['jwt-token']);
 
-    useEffect(() => {
+    // useEffect(() => {
 
-    }, [token])
+    // }, [token])
     return (
         <>
             <div className="nav-wrapper">

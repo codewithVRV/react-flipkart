@@ -20,7 +20,7 @@ function Login () {
                 username: formDetails.username
             })
 
-            setToken('jwt-token',response.data.token)
+            setToken('jwt-token',response.data.token, {httpOnly: true})
             navigator('/')
             toast.success("Login Successfully")
         }

@@ -4,14 +4,16 @@ import './Authentication.css'
 import axios from 'axios';
 import { signin } from '../../Apis/fakeStoreProdApis';
 import toast from 'react-hot-toast';
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import { useCookies } from 'react-cookie';
 import jwt_decode from "jwt-decode";
+import UserContext from '../../Context/UserContext';
 function Login () {
 
     const authRef = useRef()
     const navigator = useNavigate()
     const [token, setToken] = useCookies(['jwt-token'])
+    const { setUser} = useContext(UserContext)
 
     async function onAuthFormSubmit(formDetails) {
         try{
@@ -19,9 +21,10 @@ function Login () {
                 email: formDetails.email,
                 password: formDetails.password,
                 username: formDetails.username
-            })
+            }, {withCredentials: true})
             const tokenDetails = jwt_decode(response.data.token)
-            console.log(tokenDetails)
+            // console.log(tokenDetails)
+            setUser({username: tokenDetails.user, id: tokenDetails.id})
             setToken('jwt-token',response.data.token, {httpOnly: true})
             navigator('/')
             toast.success("Login Successfully")

@@ -1,12 +1,21 @@
 import CategoryItem from '../../Components/CategoryItem/CategoryItem';
 import './Home.css'
 import useCategory from '../../Hooks/useCategory';
+import useCart from '../../Hooks/useCart';
+import { useContext, useEffect } from 'react';
+import UserContext from '../../Context/UserContext';
 
 function Home () {
 
 
     const [allCategories] = useCategory()
+    const {user} = useContext(UserContext)
+    const [cart, setCart] = useCart(user ? user.id : undefined)
 
+
+    useEffect(() => {
+
+    }, [user])
     return (
 
         <>

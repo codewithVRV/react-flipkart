@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 import './ProductsDetail.css'
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getProduct } from '../../Apis/fakeStoreProdApis';
+import CartContext from '../../Context/CartContext';
 
 
 function ProductsDetail () {
@@ -14,7 +15,14 @@ function ProductsDetail () {
         setSingleDetail(response.data)
     }
 
+    const {cart, setCart} = useContext(CartContext)
 
+    function onAddingProduct () {
+        console.log("product adding")
+        setCart({...cart, products: [...cart.products, id]})
+    }
+
+    console.log("cart is", cart)
     useEffect(() => {
         getDetailsOfSingleProduct()
     }, [])
@@ -41,7 +49,7 @@ function ProductsDetail () {
                         </div>
 
                         <div className="product-actions d-flex justify-content-start">
-                            <div className="product-details-action btn btn-primary text-decoration-none">Add to Cart</div>
+                            <div className="product-details-action btn btn-primary text-decoration-none" onClick={onAddingProduct}>Add to Cart</div>
                         <a href="cart.html" id="goToCartBtn" className="product-details-action btn btn-warning text-decoration-none">Go to cart</a>
                         </div>
                     </div>

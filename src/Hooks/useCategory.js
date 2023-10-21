@@ -7,7 +7,7 @@ function useCategory () {
 
 
     async function downloadAllCategories () {
-        const response = await axios.get(getAllCategories())
+        const response = await axios.get(getAllCategories(), {withCredentials: true})
         setAllCategories(response.data)
     }
 

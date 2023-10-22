@@ -14,10 +14,7 @@ function Header () {
     const [token, setToken, removeToken] = useCookies(['jwt-token']);
     const {user, setUser} = useContext(UserContext)
     const {cart, setCart} = useContext(CartContext)
-    // console.log("userid", user.id)
-
-    // console.log("cart")
-    // console.log("user details from header", user)
+    
 
     function logOut () {
         removeToken('jwt-token', {httpOnly: true})

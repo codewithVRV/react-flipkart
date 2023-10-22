@@ -1,28 +1,39 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './ProductsDetail.css'
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-import { getProduct } from '../../Apis/fakeStoreProdApis';
+import { addProductToCart, getProduct } from '../../Apis/fakeStoreProdApis';
 import CartContext from '../../Context/CartContext';
+import UserContex from '../../Context/UserContext'
 
 
 function ProductsDetail () {
 
     const [singleDetail, setSingleDetail] = useState([])
+    const navigator = useNavigate()
     const {id} = useParams()
+    const {setCart} = useContext(CartContext)
+    const {user} = useContext(UserContex)
     async function getDetailsOfSingleProduct () {
         const response = await axios.get(getProduct(id))
         setSingleDetail(response.data)
+        
     }
 
-    const {cart, setCart} = useContext(CartContext)
 
-    function onAddingProduct () {
-        console.log("product adding")
-        setCart({...cart, products: [...cart.products, id]})
+    async function onAddingProduct () {
+        // console.log("product adding")
+        // setCart({...cart, products: [...cart.products, id]})
+        if(!user) return;
+        const response = await axios.put(addProductToCart(), {
+            productId: id,
+            userId: user.id
+        })
+        setCart({...response.data})
+        navigator(`/cart/${user.id}`)
     }
 
-    console.log("cart is", cart)
+    // console.log("cart is", cart)
     useEffect(() => {
         getDetailsOfSingleProduct()
     }, [])

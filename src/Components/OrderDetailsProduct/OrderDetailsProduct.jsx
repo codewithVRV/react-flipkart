@@ -18,11 +18,7 @@ function OrderDetailsProduct ({name, price, productImg, quantity}) {
                                     <div className="form-group">
                                         <select type="text" className="form-select">
                                             {availQuantity.map((id) => <option selected={quantity == id} key={id} value={id}>{id}</option>)}
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
+                                           
                                         </select>
                                     </div>
 

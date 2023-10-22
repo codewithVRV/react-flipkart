@@ -6,6 +6,8 @@ export function getAllProducts () {
     return `${import.meta.env.VITE_FAKE_STORE_URL}/products`
 }
 
+
+
 export function getAllProductsByCategory (category) {
     return `${import.meta.env.VITE_FAKE_STORE_URL}/products/category/${category}`
 }

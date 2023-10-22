@@ -18,6 +18,8 @@ function App() {
   const [cart, setCart] = useState({})
   const [token, setToken] = useCookies(['jwt-token'])
 
+  
+
 
   async function accessToken () {
       const res = await axios.get(`${import.meta.env.VITE_FAKE_STORE_URL}/accesstoken`, {withCredentials: true})
@@ -41,13 +43,13 @@ function App() {
   return (
     <UserContext.Provider value={{user, setUser}}>
       <CartContext.Provider value={{cart, setCart}}>
-
-      <div>
-        <Header />
-        <MainRoutes />
-        <Toaster />
-      </div>
+          <div>
+            <Header />
+            <MainRoutes />
+            <Toaster />
+          </div>
       </CartContext.Provider>
+      
 
     </UserContext.Provider>
   )

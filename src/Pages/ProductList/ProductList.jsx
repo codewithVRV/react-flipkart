@@ -10,11 +10,11 @@ function ProductList () {
 
     const [allProducts, setAllProducts] = useState([])
     const [query] = useSearchParams()
+    
 
     async function downloadAllProducts (category) {
         const downloadUrl = category ? getAllProductsByCategory(category) : getAllProducts()
         const response = await axios.get(downloadUrl)
-        // console.log("all products", response.data)
         setAllProducts(response.data)
     }
 
@@ -22,6 +22,7 @@ function ProductList () {
     useEffect(() => {
         downloadAllProducts(query.get('category'))
     }, [query.get('category')])
+
     return (
         <>
             <div className="container">

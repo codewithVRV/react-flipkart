@@ -1,15 +1,36 @@
+import { useContext, useEffect, useState } from 'react';
 import OrderDetailsProduct from '../../Components/OrderDetailsProduct/OrderDetailsProduct';
 import './Cart.css'
+import CartContext from '../../Context/CartContext';
+import axios from 'axios';
+import { getProduct } from '../../Apis/fakeStoreProdApis';
 // import { useParams } from 'react-router-dom';
 // import useCart from '../../Hooks/useCart';
 
 
 
 function Cart () {
-    // const {userId} = useParams()
+
+
+    const {cart} = useContext(CartContext)
+    const [products, setProducts] = useState([])
+    async function downloadCartProduct (cart) {
+        if(!cart || !cart.products) return;
+        const productQuantityMapping = {}
+        cart.products.forEach(product => {
+            productQuantityMapping[product.productId] = product.quantity;
+        })
+        const productPromise = cart.products.map(product => axios.get(getProduct(product.productId)))
+        const productPromiseResponse = await axios.all(productPromise)
+        const downloadProducts = productPromiseResponse.map(product => ({...product.data, quantity: productQuantityMapping[product.data.id]}))
+        setProducts(downloadProducts)
+    }
+    console.log("product array", products)
     
     // const [cart, setCart] = useCart()
-
+    useEffect(() => {
+        downloadCartProduct(cart)
+    }, [])
     return (
         <>
             <div className="container">
@@ -20,7 +41,14 @@ function Cart () {
                         <div className="order-details-title fw-bold text-center">Order Details</div>
 
                         {/* oderdetails product */}
-                        <OrderDetailsProduct />
+                        {products.length > 0 && products.map(product => <OrderDetailsProduct 
+                                                key={product.id} price={product.price} name={product.title} 
+                                                quantity={product.quantity}
+                                                productImg={product.image}  />)
+                                                
+                        
+                                    }
+                        
 
                         {/* <!-- below product copy paste --> */}
                         <hr/>

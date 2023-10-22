@@ -11,6 +11,7 @@ import jwt_decode from "jwt-decode";
 
 import { useCookies } from 'react-cookie';
 import { fetchUserCart } from './Helpers/fetchUserCartHelper';
+import Footer from './Components/Footer/Footer';
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
             <Header />
             <MainRoutes />
             <Toaster />
+            <Footer />
           </div>
       </CartContext.Provider>
       

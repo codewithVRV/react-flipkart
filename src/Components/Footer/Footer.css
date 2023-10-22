@@ -1,0 +1,12 @@
+.footer {
+    background-color: #0099DD !important;
+    margin-top: 5rem !important;
+}
+
+.copyright-name {
+    
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: white !important;
+    margin-left: 20rem;
+}

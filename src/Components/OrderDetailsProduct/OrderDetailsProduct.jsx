@@ -1,4 +1,4 @@
-function OrderDetailsProduct ({name, price, productImg, quantity}) {
+function OrderDetailsProduct ({name, price, productImg, quantity, onRemove}) {
     const availQuantity = [1, 2,3, 4, 5, 6, 7, 8, 9]
     return (
         <>
@@ -23,7 +23,7 @@ function OrderDetailsProduct ({name, price, productImg, quantity}) {
                                     </div>
 
                                 </div>
-                                <div className="order-details-product-remove btn btn-danger">Remove</div>
+                                <div className="order-details-product-remove btn btn-danger" onClick={onRemove}>Remove</div>
                             </div>
 
                         </div> 

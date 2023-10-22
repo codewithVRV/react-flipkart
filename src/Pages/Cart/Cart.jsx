@@ -3,7 +3,8 @@ import OrderDetailsProduct from '../../Components/OrderDetailsProduct/OrderDetai
 import './Cart.css'
 import CartContext from '../../Context/CartContext';
 import axios from 'axios';
-import { getProduct } from '../../Apis/fakeStoreProdApis';
+import { getProduct, updateProductInCart } from '../../Apis/fakeStoreProdApis';
+import UserContext from '../../Context/UserContext';
 // import { useParams } from 'react-router-dom';
 // import useCart from '../../Hooks/useCart';
 
@@ -12,7 +13,8 @@ import { getProduct } from '../../Apis/fakeStoreProdApis';
 function Cart () {
 
 
-    const {cart} = useContext(CartContext)
+    const {cart, setCart} = useContext(CartContext)
+    const {user, setUser} = useContext(UserContext)
     const [products, setProducts] = useState([])
     async function downloadCartProduct (cart) {
         if(!cart || !cart.products) return;
@@ -25,12 +27,18 @@ function Cart () {
         const downloadProducts = productPromiseResponse.map(product => ({...product.data, quantity: productQuantityMapping[product.data.id]}))
         setProducts(downloadProducts)
     }
-    console.log("product array", products)
     
+    async function onProductUpdate (productId, quantity) {
+        if(!user) return
+        const response = await axios.put(updateProductInCart(), {
+            userId: user.id, productId, quantity
+        })
+        setCart({...response.data})
+    }
     // const [cart, setCart] = useCart()
     useEffect(() => {
         downloadCartProduct(cart)
-    }, [])
+    }, [cart])
     return (
         <>
             <div className="container">
@@ -43,7 +51,7 @@ function Cart () {
                         {/* oderdetails product */}
                         {products.length > 0 && products.map(product => <OrderDetailsProduct 
                                                 key={product.id} price={product.price} name={product.title} 
-                                                quantity={product.quantity}
+                                                quantity={product.quantity} onRemove={() => onProductUpdate(product.id, 0)}
                                                 productImg={product.image}  />)
                                                 
                         

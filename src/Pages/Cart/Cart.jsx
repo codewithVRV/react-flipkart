@@ -16,6 +16,10 @@ function Cart () {
     const {cart, setCart} = useContext(CartContext)
     const {user, setUser} = useContext(UserContext)
     const [products, setProducts] = useState([])
+    const [totalPrice, setTotalPrice] = useState({price: '', quantity: ''})
+    // console.log(products)
+
+    // console.log("total Price", totalPrice)
     async function downloadCartProduct (cart) {
         if(!cart || !cart.products) return;
         const productQuantityMapping = {}
@@ -24,9 +28,15 @@ function Cart () {
         })
         const productPromise = cart.products.map(product => axios.get(getProduct(product.productId)))
         const productPromiseResponse = await axios.all(productPromise)
+        // console.log(productPromise)
+        
         const downloadProducts = productPromiseResponse.map(product => ({...product.data, quantity: productQuantityMapping[product.data.id]}))
         setProducts(downloadProducts)
+        const downloadPrice = products.map((price) => ({price: price.price, quantity: price.quantity}))
+        setTotalPrice(downloadPrice)
+        
     }
+    // console.log("array of price", price)
     
     async function onProductUpdate (productId, quantity) {
         if(!user) return
@@ -36,6 +46,16 @@ function Cart () {
         setCart({...response.data})
     }
     // const [cart, setCart] = useCart()
+
+    // function calculatePrice () {
+
+    //     const total = totalPrice.map((p) => p.price*p.quantity)
+
+    //     var sum = total.reduce((accumulator, currentValue) => {
+    //         return accumulator + currentValue
+    //     });
+    //     setTotal([...total, sum])
+    // }
     useEffect(() => {
         downloadCartProduct(cart)
     }, [cart])
@@ -70,8 +90,8 @@ function Cart () {
                                 <div className="price-details-title fw-bold text-center">Price Details</div>
                                 <div className="price-details-data">
                                     <div className="price-details-items d-flex flew-row justify-content-between">
-                                        <div>Price</div>
-                                        <div id="total-price"></div>
+                                        <div></div>
+                                        <div id="total-price">{products.price}</div>
                                     </div>
                                     <div className="price-details-items d-flex flew-row justify-content-between">
                                         <div>Discount</div>
@@ -83,15 +103,15 @@ function Cart () {
                                     </div>
                                     <div className="price-details-items d-flex flew-row justify-content-between">
                                         <div>Total</div>
-                                        <div id="net-price"></div>
+                                        <div id="net-price">{total}</div>
                                     </div>
                                 </div>
                                 <div className="price-details-btn-group both-btn">
-                                    <a href="productList.html" className="continue-shopping btn btn-info text-decoration-none">
+                                    <a href="" className="continue-shopping btn btn-info text-decoration-none">
                                         Continue Shopping
                                     </a>
-                                    <a href="checkout.html" className="checkout btn btn-success text-decoration-none">
-                                        Checkout
+                                    <a href=""  className="checkout btn btn-success text-decoration-none">
+                                        Total
                                     </a>
                                 </div>
                                 

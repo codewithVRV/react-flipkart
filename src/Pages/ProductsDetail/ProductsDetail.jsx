@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import './ProductsDetail.css'
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
@@ -60,8 +60,8 @@ function ProductsDetail () {
                         </div>
 
                         <div className="product-actions d-flex justify-content-start">
-                            <div className="product-details-action btn btn-primary text-decoration-none" onClick={onAddingProduct}>Add to Cart</div>
-                        <a href="cart.html" id="goToCartBtn" className="product-details-action btn btn-warning text-decoration-none">Go to cart</a>
+                            {user && <div className="product-details-action btn btn-primary text-decoration-none" onClick={onAddingProduct}>Add to Cart</div>}
+                        {user && <Link to={`/cart/${id}`} id="goToCartBtn" className="product-details-action btn btn-warning text-decoration-none">Go to cart</Link>}
                         </div>
                     </div>
                 </div>

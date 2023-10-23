@@ -1,5 +1,9 @@
 .cart-title{
     padding: 3rem 0;
+    font-size: 3rem;
+    background: -webkit-linear-gradient(90deg, rgba(238, 130, 238, 1) 0%, rgba(0, 0, 255, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 .order-details {
     flex-basis: 70%;

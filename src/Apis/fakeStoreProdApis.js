@@ -1,4 +1,5 @@
 export function getAllCategories () {
+    // return `https://react-flipkart.onrender.com/products/categories`
     return `${import.meta.env.VITE_FAKE_STORE_URL}/products/categories`
 }
 

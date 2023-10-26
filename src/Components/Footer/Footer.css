@@ -15,20 +15,13 @@
 
 @media screen and (max-width: 576px) {
     .footer {
-        background-color: #0099DD !important;
-        margin-top: 5rem !important;
+        background-color: #0099DD;
         position: fixed;;
         bottom: 0;
         left: 0;
         right: 0;
     }
     
-    .copyright-name {
-        
-        font-size: 1rem;
-        font-weight: normal;
-        color: white !important;
-        /* margin-left: 20rem; */
-    }
+    
     
 }

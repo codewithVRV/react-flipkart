@@ -22,3 +22,21 @@
     gap: 2rem;
     margin-top: 7px;
 }
+
+
+@media  screen and (max-width: 576px) {
+    .nav-wrapper{
+        display: flex;
+        /* justify-content: space-around; */
+        flex-direction: column;
+        /* width: 100%; */
+    }
+}
+
+
+@media screen and (min-width: 577px) and  (max-width: 768px) {
+    .nav-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+}

@@ -8,14 +8,7 @@ function CategoryItem ({itemName, filter=''}) {
     const redirectLink = `/products?category=${filter}`
     
     return (
-        // <div className="category-list d-flex flex-row justify-content-between align-items-center" id="categoryList"> 
-           
-        //             <div className="category-item">
-        //                 <Link to={'/products'}>{itemName}</Link>
-        //             </div>
-                     
-
-        // </div>
+       
 
         <>
             <div className="col parent-img-category-wrapper">

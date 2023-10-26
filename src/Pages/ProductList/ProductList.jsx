@@ -8,14 +8,14 @@ import { useSearchParams } from 'react-router-dom';
 
 function ProductList () {
 
-    const [allProducts, setAllProducts] = useState([])
+    const [productList, setProductList] = useState(null);
     const [query] = useSearchParams()
     
 
     async function downloadAllProducts (category) {
         const downloadUrl = category ? getAllProductsByCategory(category) : getAllProducts()
         const response = await axios.get(downloadUrl)
-        setAllProducts(response.data)
+        setProductList(response.data)
     }
 
 
@@ -42,7 +42,7 @@ function ProductList () {
                    {/* productBox here */}
                     
                     {/* <ProductBox productDemoImage={productDemoImage} name={"Dummy"} price={"100$"}/> */}
-                    {allProducts && allProducts.map((product) =>  <ProductBox key={product.id} id={product.id} productDemoImage={product.image} name={product.title.substr(0, 20) + ".."} price={product.price}/> )}
+                    {productList && productList.map((product) =>  <ProductBox key={product.id} id={product.id} productDemoImage={product.image} name={product.title.substr(0, 20) + ".."} price={product.price}/> )}
 
                      {/* <!-- Everything below just copy paste --> */}
                     

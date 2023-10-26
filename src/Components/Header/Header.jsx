@@ -41,7 +41,7 @@ function Header () {
                         <p>{ (user) ? user.username : "User Name"}</p>
                     </div>
                     <div className="dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a className="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Account
                         </a>
                         <ul className="dropdown-menu">
@@ -50,7 +50,7 @@ function Header () {
                                     logOut()
                                     toast.success("Logout Successfully")
                                 }
-                            } className="dropdown-item" href="#">Logout</Link></li> : <li><Link to={"/login"} className="dropdown-item" href="#">Login</Link></li>}
+                            } className="dropdown-item" to={'/'}>Logout</Link></li> : <li><Link to={"/login"} className="dropdown-item" >Login</Link></li>}
                         
 
                         </ul>

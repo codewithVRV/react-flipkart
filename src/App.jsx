@@ -16,7 +16,7 @@ import Footer from './Components/Footer/Footer';
 function App() {
 
   const [user, setUser] = useState(null)
-  const [cart, setCart] = useState({})
+  const [cart, setCart] = useState(null)
   const [token, setToken] = useCookies(['jwt-token'])
 
   
@@ -51,10 +51,8 @@ function App() {
             <Footer />
           </div>
       </CartContext.Provider>
-      
-
     </UserContext.Provider>
   )
 }
 
-export default App
+export default App;

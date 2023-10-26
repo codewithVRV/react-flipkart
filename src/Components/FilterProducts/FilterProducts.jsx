@@ -27,7 +27,8 @@ function FilterProducts () {
             <div id="categoryList">
 
                 {/* <a href="productList.html" className="d-flex text-decoration-none" onClick={() => handleCategoryNavigate("")}>All Products</a> */}
-                {allCategories && allCategories.map((category) => <a onClick={() => handleCategoryNavigate(category)} key={category} className="d-flex text-decoration-none">{category}</a>)}
+                {allCategories && allCategories.map((category) => <a onClick={() => handleCategoryNavigate(category)} key={category}
+                 className="d-flex text-decoration-none">{category}</a>)}
 
             </div>
 

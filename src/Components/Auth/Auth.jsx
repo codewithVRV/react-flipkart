@@ -22,7 +22,7 @@ function Auth ({onSubmit}, ref) {
     }
 
     function resetForm () {
-        setFormDetails({username: '', email: '', password: ''})
+        setFormDetails({username: '', email: '', password: '', isLoading: false})
     }
 
     useImperativeHandle(ref, () => {
@@ -47,7 +47,6 @@ function Auth ({onSubmit}, ref) {
                     <input onChange={(e) => updatePassword(e.target.value)} value={formDetails.password} type="password" className="form-control" placeholder="Password" id="Password" />
                 </div>
                 <div className="input-group">
-                    {/* <button onClick={onFormSubmit} className="form-control btn btn-primary">Submit</button> */}
                     <button onClick={onFormSubmit} className="form-control btn btn-primary" type="button" disabled={formDetails.isLoading}>
                        {formDetails.isLoading &&  <span className="spinner-border spinner-border-sm" aria-hidden="true"></span> }
                         <span role="status">{(formDetails.isLoading) ? "Loading.." : "Submit"}</span>

@@ -10,10 +10,10 @@ import jwt_decode from "jwt-decode";
 import UserContext from '../../Context/UserContext';
 function Login () {
 
-    const authRef = useRef()
+    const authRef = useRef(null)
     const navigator = useNavigate()
     const [token, setToken] = useCookies(['jwt-token'])
-    const { setUser} = useContext(UserContext)
+    const {setUser} = useContext(UserContext)
 
     async function onAuthFormSubmit(formDetails) {
         try{
@@ -23,7 +23,6 @@ function Login () {
                 username: formDetails.username
             }, {withCredentials: true})
             const tokenDetails = jwt_decode(response.data.token)
-            // console.log(tokenDetails)
             setUser({username: tokenDetails.user, id: tokenDetails.id})
             setToken('jwt-token',response.data.token, {httpOnly: true})
             navigator('/')
@@ -31,7 +30,6 @@ function Login () {
         }
 
         catch (error) {
-            console.log("error from login", error)
             authRef.current.resetFormData()
             toast.error("Something went wrong..")
         }
@@ -48,6 +46,7 @@ function Login () {
 
             <div className="login-wrapper" id="loginForm">
                 <h4 className="text-center">Login</h4>
+                
                 {/* Auth component */}
                 <Auth 
                 

@@ -3,10 +3,9 @@ import CartContext from "../Context/CartContext"
 import { fetchUserCart } from "../Helpers/fetchUserCartHelper"
 
 function useCart (userId) {
+
     const {cart, setCart} = useContext(CartContext)
-
     
-
     useEffect(() => {
         fetchUserCart(userId, setCart)
     }, [userId])

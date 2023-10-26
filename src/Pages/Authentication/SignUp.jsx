@@ -18,7 +18,6 @@ function SignUp () {
             navigator('/login')
         }
         catch (error) {
-            console.log("error of signup", error)
             resetForm()
             toast.error("Something went wrong...")
         }

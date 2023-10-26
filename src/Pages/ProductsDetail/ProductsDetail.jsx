@@ -8,13 +8,14 @@ import UserContex from '../../Context/UserContext'
 
 
 function ProductsDetail () {
-
+    const {id} = useParams()
     const [singleDetail, setSingleDetail] = useState([])
     const navigator = useNavigate()
-    const {id} = useParams()
+    
     const {setCart} = useContext(CartContext)
     const {user} = useContext(UserContex)
-    async function getDetailsOfSingleProduct () {
+
+    async function downloadProduct (id) {
         const response = await axios.get(getProduct(id))
         setSingleDetail(response.data)
         
@@ -22,8 +23,6 @@ function ProductsDetail () {
 
 
     async function onAddingProduct () {
-        // console.log("product adding")
-        // setCart({...cart, products: [...cart.products, id]})
         if(!user) return;
         const response = await axios.put(addProductToCart(), {
             productId: id,
@@ -33,13 +32,12 @@ function ProductsDetail () {
         navigator(`/cart/${user.id}`)
     }
 
-    // console.log("cart is", cart)
     useEffect(() => {
-        getDetailsOfSingleProduct()
+        downloadProduct(id)
     }, [])
     return (
         <>
-            <div className="container">
+            <div className="container parent-product-detail-wrapper">
             <div className="row">
                 <div className="product-details-wrapper d-flex flex-row justify-content-between align-items-start">
 
@@ -53,7 +51,7 @@ function ProductsDetail () {
                             <div className="product-name" id="product-name">{singleDetail.title}</div>
                             <div className="product-price fw-bold" id="product-price">{singleDetail.price}</div>
                             <div className="product-description">
-                                <div className="product-description-title fw-bold" id="product-info">Descript of Product</div>
+                                <div className="product-description-title fw-bold" id="product-info">Description of Product</div>
                                 <div className="product-description-data" id="product-desc">{singleDetail.description}</div>
                                 
                             </div>

@@ -14,9 +14,9 @@ function Cart () {
 
 
     const {cart, setCart} = useContext(CartContext)
-    const {user, setUser} = useContext(UserContext)
+    const {user} = useContext(UserContext)
     const [products, setProducts] = useState([])
-    const [totalPrice, setTotalPrice] = useState({price: '', quantity: ''})
+    // const [totalPrice, setTotalPrice] = useState({price: '', quantity: ''})
     // console.log(products)
 
     // console.log("total Price", totalPrice)
@@ -32,8 +32,8 @@ function Cart () {
         
         const downloadProducts = productPromiseResponse.map(product => ({...product.data, quantity: productQuantityMapping[product.data.id]}))
         setProducts(downloadProducts)
-        const downloadPrice = products.map((price) => ({price: price.price, quantity: price.quantity}))
-        setTotalPrice(downloadPrice)
+        // const downloadPrice = products.map((price) => ({price: price.price, quantity: price.quantity}))
+        // setTotalPrice(downloadPrice)
         
     }
     // console.log("array of price", price)
@@ -103,7 +103,7 @@ function Cart () {
                                     </div>
                                     <div className="price-details-items d-flex flew-row justify-content-between">
                                         <div>Total</div>
-                                        <div id="net-price">{total}</div>
+                                        <div id="net-price">26</div>
                                     </div>
                                 </div>
                                 <div className="price-details-btn-group both-btn">
